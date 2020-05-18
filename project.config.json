@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "interview-applet",
 	"description": "interview managment",
-	"appid": "wx7eb8976e8cec4340",
+	"appid": "appId",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,
