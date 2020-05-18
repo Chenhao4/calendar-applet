@@ -1,0 +1,76 @@
+{
+	"miniprogramRoot": "dist/",
+	"projectname": "interview-applet",
+	"description": "interview managment",
+	"appid": "wx7eb8976e8cec4340",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false
+	},
+	"compileType": "miniprogram",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "createInterview",
+					"pathName": "pages/createInterview/createInterview",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "Demo",
+					"pathName": "components/createInterview/demo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "InterviewList",
+					"pathName": "pages/interviewList/interviewList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "arrangeInterview",
+					"pathName": "pages/interviewList/arrangeInterview",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

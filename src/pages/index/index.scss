@@ -1,0 +1,91 @@
+.index {
+    position:relative;
+}
+
+.imgBox {
+    position: relative;
+    overflow: hidden;
+    // padding-bottom: 100%;/*重要属性*/
+    height: 100%;
+}
+
+.backgroundImg {
+    width:100%;   
+    height: 1100px;
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: -1;
+}
+
+.titleImg {
+    width:90%;
+    height: 500px;
+    padding: 4% 5% 0 5%;
+    z-index:1;
+}
+
+.main {
+    // border: 1px solid red;
+}
+
+.yearNum {
+    float: left;    
+    font-size: 70px;
+    width: 70px;  
+    margin: 62px 0 0 5%;  
+    line-height: 80px;  
+    // border: 1px solid red;
+}
+
+.dateNum {
+    font-size: 360px;
+    font-family: 'Microsoft YaHei';
+    font-weight: bolder;
+    margin: -36px 4% 0 6%;
+    letter-spacing: -10pt;
+    // width: 200px;
+    float: left;
+    // border: 1px solid red;
+}
+
+.weekNum {
+    font-size: 28px;
+    font-family: 'Times New Roman';
+    float: right;
+    margin: 82px 8% 0 0;
+    // border: 1px solid red;
+}
+
+.monthNum {
+    font-size: 52px;
+    font-family: 'Microsoft YaHei';
+    float: left;
+    margin: 62px 8px 0 10%;
+    // border: 1px solid red;
+}
+
+.monthChinese {
+    font-size: 28px;
+    font-family: 'Times New Roman', Times, serif;
+    float: left;
+    margin: 90px 0 0 5px;
+    font-weight: bolder;
+    // border: 1px solid red;
+}
+
+.week {
+    font-size: 32px;
+    float: right;
+    margin: 60px 8% 0 0;
+    font-weight: bolder;
+    // border: 1px solid red;
+}
+
+.text {
+    // border: 1px solid red;
+    float: left;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
