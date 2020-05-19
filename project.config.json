@@ -1,8 +1,8 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "interview-applet",
-	"description": "interview managment",
-	"appid": "appId",
+	"projectname": "calendar",
+	"description": "calendar",
+	"appid": "wxaab47e813a82d31e",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,
