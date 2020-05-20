@@ -6,10 +6,29 @@ import Login from '../../components/login/index'
 export default class Index extends Component {
   state = { 
     nickName: '',
-    avatarUrl: ''
+    avatarUrl: '',
+    hasUserInfo: false
   }
 
-  componentWillMount () { }
+  componentWillMount () { 
+    Taro.getSetting({
+      success: (res) => {
+        if(res.authSetting['scope.userInfo']) {
+          console.log('已授权')
+          Taro.getUserInfo({
+            success: (userInfoRes) => {
+              console.log(userInfoRes.userInfo)
+              this.setState({
+                nickName: userInfoRes.userInfo.nickName,
+                avatarUrl: userInfoRes.userInfo.avatarUrl,
+                hasUserInfo: true
+              })
+            }
+          })
+        }
+      }
+    })
+  }
 
   componentDidMount () { 
     Taro.login({
@@ -31,24 +50,16 @@ export default class Index extends Component {
   }
 
   // 获取微信授权个人信息
-  onGetUserInfo = () => {
-    Taro.getSetting({
-      success: (res) => {
-        if(res.authSetting['scope.userInfo']) {
-          Taro.getUserInfo({
-            success: (userInfoRes) => {
-              console.log(userInfoRes.userInfo)
-              this.setState({
-                nickName: userInfoRes.userInfo.nickName,
-                avatarUrl: userInfoRes.userInfo.avatarUrl
-              })
-            }
-          })
-        } else {
-          console.log('未授权')
-        }
-      }
-    })
+  onGetUserInfo = (e) => {
+    console.log(e)
+    console.log(e.detail.userInfo)
+    if(e.detail.userInfo) {
+      this.setState({ 
+        nickName: e.detail.userInfo.nickName,
+        avatarUrl: e.detail.userInfo.avatarUrl,
+        hasUserInfo: true
+      })
+    }
   }
 
   render () {
@@ -57,7 +68,7 @@ export default class Index extends Component {
     return (
       <View>
         My Info
-        <Button openType='getUserInfo' onClick={this.onGetUserInfo}>点我授权个人信息</Button>
+        {!this.state.hasUserInfo && <Button openType='getUserInfo' onGetUserInfo={(e) => this.onGetUserInfo(e)} >点我授权个人信息</Button>}
       <View>
         {this.state.nickName}
         <Image src={this.state.avatarUrl} />
