@@ -11,7 +11,14 @@ import './app.scss'
 
 class App extends Component {
 
-  componentDidMount () {}
+  componentDidMount () {
+    // 配置云函数环境
+    if (process.env.TARO_ENV === 'weapp') {
+      Taro.cloud.init({
+        env: 'dev-chen'
+      })
+    }
+  }
 
   componentDidShow () {}
 
@@ -57,7 +64,8 @@ class App extends Component {
       color: '#888888',
       selectedColor: "#514ACB",
       backgroundColor: "#FFFFFF",
-    }
+    },
+    cloud: true
   }
 
   // 在 App 类中的 render() 函数没有实际作用

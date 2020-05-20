@@ -1,6 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Image } from '@tarojs/components'
 
+import Login from '../../components/login/index'
+
 export default class Index extends Component {
   state = { 
     nickName: '',
@@ -60,7 +62,7 @@ export default class Index extends Component {
         {this.state.nickName}
         <Image src={this.state.avatarUrl} />
       </View>
-      
+      <Login />
         </View>
 
     )
