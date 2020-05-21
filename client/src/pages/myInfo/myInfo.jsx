@@ -52,7 +52,6 @@ export default class Index extends Component {
   // 获取微信授权个人信息
   onGetUserInfo = (e) => {
     console.log(e)
-    console.log(e.detail.userInfo)
     if(e.detail.userInfo) {
       this.setState({ 
         nickName: e.detail.userInfo.nickName,
