@@ -3,7 +3,7 @@ import { View, Button, Image } from '@tarojs/components'
 
 import Login from '../../components/login/index'
 
-export default class Index extends Component {
+export default class MyInfo extends Component {
   state = { 
     nickName: '',
     avatarUrl: '',
