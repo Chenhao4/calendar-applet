@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
+import {Big} from 'big.js'
 import './account.scss'
 
 const reg = RegExp(/\+|\−|\÷|\×/)
@@ -42,7 +43,9 @@ export default class Account extends Component {
 
   componentDidHide() {
     this.setState({
-      hideModal: true
+      hideModal: true,
+      value: '0',
+      preOper: null
     })
   }
 
@@ -109,18 +112,19 @@ export default class Account extends Component {
   // 计算表达式
   calOper = (option, pre, next) => {
     console.log('calOper', option, pre, next)
+    let preBig = new Big(pre)
+    let nextBig = new Big(next)
     switch(option) {
-      case '÷': return pre / next 
-      case '×': return pre * next
-      case '−': return pre - next
-      case '+': return pre + next
+      case '÷': return preBig.div(nextBig)
+      case '×': return preBig.times(nextBig)
+      case '−': return preBig.minus(nextBig)
+      case '+': return preBig.plus(nextBig)
     }
   }
 
   // 点击数字按钮
   onTapDigit = (e) => {
     // console.log(e.target.dataset.value)
-
     const key = e.target.dataset.value; // 根据data-value获取按键类型
 
     if (key == '●') {
@@ -144,19 +148,22 @@ export default class Account extends Component {
     } else {
       // 按下数字键
       const curValue = key;
-
-      this.setState({
-        value: this.state.value === '0' ? String(curValue) : this.state.value + curValue,
-        // displayValue:  this.state.displayValue === '0' ? String(curValue) : this.state.displayValue + curValue,
-        preOper: null
-      })
+      if (this.state.value.length >= 10) {
+        Taro.showToast({
+          title: "最多输入10位",
+          icon: "none"
+        })
+      } else {
+        this.setState({
+          value: this.state.value === '0' ? String(curValue) : this.state.value + curValue,
+          preOper: null
+        })
+      }
     }
-    // console.log(this.state)
   }
 
   // 点击操作符
   onTapOperator = (e) => {
-    // console.log(e)
     // console.log(e.target.dataset.value)
     const curOper = e.target.dataset.value
 
@@ -172,10 +179,11 @@ export default class Account extends Component {
       let index = oldValue.match(reg).index
 
       if (this.state.preOper == null) {
-        // 计算表达式 todo 浮点数精确度问题解决
+        // 计算表达式 浮点数精确度问题解决
         const pre = parseFloat(oldValue.substring(0, index))
         const next = parseFloat(oldValue.substring(index + 1))
         let newValue = this.calOper(oldValue[index], pre, next)
+        console.log('newValue', newValue.toString())
         this.setState({
           value: curOper == '=' ? newValue.toString() : newValue + curOper,
           preOper: curOper
@@ -190,14 +198,19 @@ export default class Account extends Component {
     // console.log(this.state.value)
   }
 
-
-
   onTapFunction= (e) => {
     if (e.target.dataset.value == 'ac') {
       this.setState({
         value: '0',
         preOper: null
       })
+    } else if (e.target.dataset.value == 'back') {
+      let curValue = this.state.value
+      if (curValue.length > 1) {
+        this.setState({
+          value: this.state.value.substr(0, this.state.value.length - 1)
+        })
+      }
     }
   }
 
@@ -246,7 +259,7 @@ export default class Account extends Component {
                   <View className='function-keys' onClick={(e) => this.onTapFunction(e)}>
                     <View className='calculator-key' data-value='ac'>AC</View>
                     <View className='calculator-key'>sign</View>
-                    <View className='calculator-key'>back</View>
+                    <View className='calculator-key' data-value='back'>back</View>
                   </View>
                   <View className='digit-keys' onClick={(e) => this.onTapDigit(e)}>
                     {digitView}
