@@ -19,12 +19,12 @@ export default class Index extends Component {
   componentWillMount () {}
 
   componentDidMount () { 
-    getYear().then(res => {
-      this.setState({
-        year: res.data.year,
-        text: res.data.text
-      })
-    })
+    // getYear().then(res => {
+    //   this.setState({
+    //     year: res.data.year,
+    //     text: res.data.text
+    //   })
+    // })
   }
 
   componentWillUnmount () { }

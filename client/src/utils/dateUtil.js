@@ -1,11 +1,10 @@
-import Taro from "@tarojs/taro";
 
 export const formatNumber = n => {
   n = n.toString();
   return n[1] ? n : "0" + n;
-};
+}
 
-export const dateToString = (date)=>{ 
+export const dateToString = (date) => { 
   var year = date.getFullYear(); 
   var month =(date.getMonth() + 1).toString(); 
   var day = (date.getDate()).toString();  
@@ -19,7 +18,7 @@ export const dateToString = (date)=>{
   return dateTime; 
 }
 
-export const monthToChinese = (month) =>{
+export const monthToChinese = (month) => {
   switch (month) {
     case 1:
       return '一';
@@ -48,7 +47,7 @@ export const monthToChinese = (month) =>{
   }
 }
 
-export const getWeekChinese = (date) =>{
+export const getWeekChinese = (date) => {
   var a = new Array("日", "一", "二", "三", "四", "五", "六");  
   var week = date.getDay();  
   return '星期' + a[week];

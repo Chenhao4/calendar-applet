@@ -4,16 +4,16 @@ import { View, Button, Image } from '@tarojs/components'
 import Login from '../../components/login/index'
 
 export default class MyInfo extends Component {
-  state = { 
+  state = {
     nickName: '',
     avatarUrl: '',
     hasUserInfo: false
   }
 
-  componentWillMount () { 
+  componentWillMount() {
     Taro.getSetting({
       success: (res) => {
-        if(res.authSetting['scope.userInfo']) {
+        if (res.authSetting['scope.userInfo']) {
           console.log('已授权')
           Taro.getUserInfo({
             success: (userInfoRes) => {
@@ -30,7 +30,7 @@ export default class MyInfo extends Component {
     })
   }
 
-  componentDidMount () { 
+  componentDidMount() {
     Taro.login({
       success() {
         console.log('taro login success')
@@ -39,11 +39,11 @@ export default class MyInfo extends Component {
 
   }
 
-  componentWillUnmount () { }
+  componentWillUnmount() { }
 
-  componentDidShow () { }
+  componentDidShow() { }
 
-  componentDidHide () { }
+  componentDidHide() { }
 
   config = {
     navigationBarTitleText: '我的'
@@ -52,8 +52,8 @@ export default class MyInfo extends Component {
   // 获取微信授权个人信息
   onGetUserInfo = (e) => {
     console.log(e)
-    if(e.detail.userInfo) {
-      this.setState({ 
+    if (e.detail.userInfo) {
+      this.setState({
         nickName: e.detail.userInfo.nickName,
         avatarUrl: e.detail.userInfo.avatarUrl,
         hasUserInfo: true
@@ -61,19 +61,19 @@ export default class MyInfo extends Component {
     }
   }
 
-  render () {
+  render() {
 
 
     return (
       <View>
         My Info
         {!this.state.hasUserInfo && <Button openType='getUserInfo' onGetUserInfo={(e) => this.onGetUserInfo(e)} >点我授权个人信息</Button>}
-      <View>
-        {this.state.nickName}
-        <Image src={this.state.avatarUrl} />
-      </View>
-      <Login />
+        <View>
+          {this.state.nickName}
+          <Image src={this.state.avatarUrl} />
         </View>
+        <Login />
+      </View>
 
     )
   }

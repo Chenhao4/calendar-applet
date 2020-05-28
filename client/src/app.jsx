@@ -30,7 +30,8 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/myInfo/myInfo',
-      'pages/account/account'
+      'pages/account/account',
+      'pages/addBill/addBill'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -43,7 +44,7 @@ class App extends Component {
       list: [
         {
           pagePath: "pages/account/account",
-          text: "记账",
+          text: "交易",
           iconPath: "./assets/images/tabBar/index_1.png",
           selectedIconPath: "./assets/images/tabBar/index_2.png"
         },
